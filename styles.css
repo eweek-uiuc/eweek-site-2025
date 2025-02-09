@@ -1,0 +1,234 @@
+@font-face {
+  font-family: "Chomsky";
+  src: url("./font-chomsky/Chomsky.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Wolfhagen-Blackletter";
+  src: url("./font-wolfhagen/WolfhagenBlackletter-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("./font-cinzel/Cinzel-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Cormorant-Garamond";
+  src: url("./font-cormorant/CormorantGaramond-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Cormorant-Garamond-Bold";
+  src: url("./font-cormorant/CormorantGaramond-Bold.ttf") format("truetype");
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: rgb(62, 50, 80);
+}
+
+.title-text {
+  font-family: "Chomsky" !important;
+}
+.text-numbers {
+  font-family: "Wolfhagen-Blackletter" !important;
+}
+.subtitle-text {
+  font-family: "Cinzel" !important;
+}
+.body-text {
+  font-family: "Cormorant-Garamond" !important;
+}
+.body-text-bold {
+  font-family: "Cormorant-Garamond-Bold" !important;
+}
+.wip-container {
+  position:absolute;
+  display: flex;
+  top:0;
+  left: 0;
+  width:100%;
+  height:100%;
+  z-index: 999999;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+/* 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto; */
+}
+
+/* Find a better way to adjust the HEIGHT of the BACKGROUND */
+/* so that the HEIGHT OF THE CONTAINER is the SAME as the SCALED SVG */
+.background-container {
+  padding: 10%;
+  z-index: 0;
+  position: relative;
+  width: 100%;
+  overflow: hidden;  
+}
+
+.scalable-svg {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.title-container {
+  position: relative;
+  top: 15vh;
+  left: 20vw;
+}
+.title-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: fit-content;
+}
+.text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: fit-content; 
+  justify-items: center;
+
+  position: relative;
+  z-index: 1;  
+}
+
+/* Tablet */
+@media only screen and (max-width: 767px) {
+  .main-container {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop */
+@media only screen and (max-width: 1024px) {
+  .main-container {
+    max-width: 960px;
+  }
+}
+
+/* Only on desktop */
+@media (pointer:fine) {
+  #navbox:hover {
+    transform:scale(1.1);
+  }  
+}
+
+#navbox {
+  position: fixed;
+  bottom: 5vh;
+  right: 5vh;
+  background-color: #333;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  user-select: none;
+}
+
+#nav-overlay {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+}
+
+.overlay-content {
+  text-align: center;
+}
+
+.overlay-content a {
+  color: rgb(255, 255, 255);
+  font-family: "Cinzel" !important;
+  font-size: 24px;
+  text-decoration: none;
+  display: block;
+  margin: 20px 0;
+}
+
+#nav-content {
+  display: none;
+  padding: 10px;
+}
+
+#nav-overlay a[href^="http"]::after,
+#nav-overlay a[href^="https://"]::after
+{
+  content: "";
+  width: 11px;
+  height: 11px;
+  margin-left: 4px;
+  background-image: url("website-assets/external-link-white.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+}
+
+.accordion {
+  font-family: "Cormorant-Garamond-Bold" !important;
+  position:relative;
+  background-color: rgb(14, 30, 36);
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: rgb(14, 30, 36);
+  transition: all 0.3s ease-out;
+  z-index: 2;
+  user-select: none;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: rgb(34, 50, 56);
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  font-family: "Cormorant-Garamond" !important;
+  position: relative;
+  padding: 0 18px;
+  background-color: rgb(40, 65, 60);
+  color:white;
+  display: none;
+  overflow: hidden;
+  z-index: 2;
+  transition: 0.2s;
+}
